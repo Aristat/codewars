@@ -3,9 +3,9 @@ def unique_in_order(iterable)
   new_array = []
   last_element = nil
   iterable.each  do |i|
-		next if i == last_element
-		last_element = i
-		new_array << i
+    next if i == last_element
+    last_element = i
+    new_array << i
   end
   
   new_array
