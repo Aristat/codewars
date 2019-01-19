@@ -1,3 +1,12 @@
+=begin
+
+Did I Finish my Sudoku?
+
+Write a function done_or_not/DoneOrNot passing a board (list[list_lines]) as parameter. 
+If the board is valid return 'Finished!', otherwise return 'Try again!'
+
+=end
+
 def done_or_not(board)
   if check_sum(board) && check_regions(board)
     'Finished!'

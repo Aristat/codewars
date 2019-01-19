@@ -1,3 +1,16 @@
+=begin
+
+Implement a safe version of Ruby's
+
+Given a hash and a list of n keys, return the value of the nth nested value.
+
+If there are more keys than there are nested levels of hashes, the method should return nil rather than raise an exception.
+
+All keys are assumed to be symbols in this kata.
+
+=end
+
+
 class Hash
   def safe_dig(*keys)
     nested_hash = self
