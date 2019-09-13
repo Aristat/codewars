@@ -19,5 +19,3 @@ def top_3_words(text)
     map(&:first).
     reverse
 end
-
-puts top_3_words("qwert qwert")
