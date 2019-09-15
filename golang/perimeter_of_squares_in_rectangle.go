@@ -9,6 +9,7 @@ perimeter(5)  should return 80
 perimeter(7)  should return 216
 
 */
+
 package kata
 
 func Perimeter(n int) int {
