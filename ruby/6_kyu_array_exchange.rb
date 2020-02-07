@@ -20,7 +20,6 @@ class Array
   def exchange_with!(other_array)
     old_array = self.clone
     self.replace(other_array.reverse)
-    other_array.clear
-    old_array.reverse.each { |i| other_array << i }
+    other_array.replace(old_array.reverse)
   end
 end
