@@ -29,11 +29,11 @@ func Meeting(s string) string {
 	var dict [][]string
 
 	for _, v := range firstAndLastNames {
-		var f_l_name []string
+		var fLName []string
 		values := strings.Split(v, ":")
-		f_l_name = append(f_l_name, strings.ToUpper(values[1]))
-		f_l_name = append(f_l_name, strings.ToUpper(values[0]))
-		dict = append(dict, f_l_name)
+		fLName = append(fLName, strings.ToUpper(values[1]))
+		fLName = append(fLName, strings.ToUpper(values[0]))
+		dict = append(dict, fLName)
 	}
 
 	sort.Slice(dict, func(i, j int) bool {
