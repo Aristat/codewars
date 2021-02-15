@@ -14,7 +14,7 @@ class Primes
   end
   
   def self.primes
-    @primes ||= eratosthenes(15486042)
+    @primes ||= eratosthenes(15486041)
   end
   
   private
