@@ -41,4 +41,3 @@ func Solve(s string) string {
 
 	return result
 }
-

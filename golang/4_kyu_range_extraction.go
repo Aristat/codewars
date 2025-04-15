@@ -15,39 +15,39 @@ package kata
 import "strconv"
 
 func Solution(list []int) string {
-  listLen := len(list)
-  var counter int
-  var numbers []string
-  var result string
+	listLen := len(list)
+	var counter int
+	var numbers []string
+	var result string
 
-  for i := 0; i < listLen; i++ {
-    counter = 0
-    start := strconv.Itoa(list[i])
+	for i := 0; i < listLen; i++ {
+		counter = 0
+		start := strconv.Itoa(list[i])
 
-    for i != listLen - 1 && (list[i + 1] - list[i]) == 1 {
-      counter++
-      i++
-    }
+		for i != listLen-1 && (list[i+1]-list[i]) == 1 {
+			counter++
+			i++
+		}
 
-    if counter > 0 {
-      if counter > 1 {
-        i, _ := strconv.Atoi(start)
-        start += "-" + strconv.Itoa(i + counter)
-      } else {
-        i--
-      }
-    }
+		if counter > 0 {
+			if counter > 1 {
+				i, _ := strconv.Atoi(start)
+				start += "-" + strconv.Itoa(i+counter)
+			} else {
+				i--
+			}
+		}
 
-    numbers = append(numbers, start)
-  }
+		numbers = append(numbers, start)
+	}
 
-  numbersLen := len(numbers)
-  for l, n := range numbers {
-    result += n
-    if l != numbersLen - 1 {
-      result += ","
-    }
-  }
+	numbersLen := len(numbers)
+	for l, n := range numbers {
+		result += n
+		if l != numbersLen-1 {
+			result += ","
+		}
+	}
 
-  return result
+	return result
 }

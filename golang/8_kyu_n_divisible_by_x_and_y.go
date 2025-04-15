@@ -13,9 +13,9 @@ n = 12, x = 7, y = 5 => false because 12 is neither divisible by 7 nor 5
 package kata
 
 func IsDivisible(n, x, y int) bool {
-    if n % x != 0 || n % y != 0 {
-      return false
-    }
-    
-    return true
+	if n%x != 0 || n%y != 0 {
+		return false
+	}
+
+	return true
 }

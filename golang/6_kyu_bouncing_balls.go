@@ -22,22 +22,22 @@ The ball can only be seen if the height of the rebounding ball is strictly great
 package kata
 
 func BouncingBall(h, bounce, window float64) int {
-  if (h <= 0 || bounce <= 0 || bounce >= 1 || window >= h) {
-    return -1
-  }
-  
-  count := 0
-  
-  for {
-    height := h * bounce
-    if height <= window {
-      count += 1
-      break
-    }
-        
-    h = height
-    count += 2
-  }
-  
-  return count
+	if h <= 0 || bounce <= 0 || bounce >= 1 || window >= h {
+		return -1
+	}
+
+	count := 0
+
+	for {
+		height := h * bounce
+		if height <= window {
+			count += 1
+			break
+		}
+
+		h = height
+		count += 2
+	}
+
+	return count
 }

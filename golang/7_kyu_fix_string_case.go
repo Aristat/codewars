@@ -36,6 +36,6 @@ func solve(str string) string {
 	} else {
 		str = strings.ToUpper(str)
 	}
-  
-  return str
+
+	return str
 }

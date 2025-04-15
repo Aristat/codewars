@@ -8,18 +8,18 @@ solve([3, 4, 4, 3, 6, 3]); // => [4, 6, 3]
 
 */
 
-package kata 
+package kata
 
 func Solve(arr []int) []int {
-  encountered := map[int]bool{}
-  result := []int{}
+	encountered := map[int]bool{}
+	result := []int{}
 
-  for i := len(arr) - 1; i >= 0; i-- {
-    if encountered[arr[i]] != true {
-      encountered[arr[i]] = true
-      result = append([]int{arr[i]}, result...)
-    }
-  }
-  
-  return result
+	for i := len(arr) - 1; i >= 0; i-- {
+		if encountered[arr[i]] != true {
+			encountered[arr[i]] = true
+			result = append([]int{arr[i]}, result...)
+		}
+	}
+
+	return result
 }

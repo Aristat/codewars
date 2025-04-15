@@ -9,7 +9,7 @@ solve("dabc") = True, because it contains a, b, c, d
 solve("abbc") = False, because b does not occur once.
 solve("v") = True
 
- */
+*/
 
 package kata
 

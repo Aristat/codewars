@@ -13,22 +13,22 @@ Examples
 package kata
 
 func ValidParentheses(parens string) bool {
-  stick := []rune{}
-  
-  for _, character := range(parens) {
-    if character == '(' {
-      stick = append(stick, character)
-    } else if character == ')' {
-      if len(stick) < 1 {
-        return false
-      }
-      stick = stick[:len(stick)-1]
-    }
-  }
+	stick := []rune{}
 
-  if len(stick) == 0 {
-    return true
-  }
-  
-  return false
+	for _, character := range parens {
+		if character == '(' {
+			stick = append(stick, character)
+		} else if character == ')' {
+			if len(stick) < 1 {
+				return false
+			}
+			stick = stick[:len(stick)-1]
+		}
+	}
+
+	if len(stick) == 0 {
+		return true
+	}
+
+	return false
 }

@@ -25,28 +25,28 @@ package kata
 
 import "fmt"
 
-func RangeBitCount(a,b int) int {
-  var asciiNum int32 = 49
-  count := 0
-  arr := makeRange(a, b)
+func RangeBitCount(a, b int) int {
+	var asciiNum int32 = 49
+	count := 0
+	arr := makeRange(a, b)
 
-  for _, i := range arr {
-    binary := fmt.Sprintf("%b", i)
+	for _, i := range arr {
+		binary := fmt.Sprintf("%b", i)
 
-    for _, num := range binary {
-      if num == asciiNum {
-        count += 1
-      }
-    }
-  }
+		for _, num := range binary {
+			if num == asciiNum {
+				count += 1
+			}
+		}
+	}
 
-  return count
+	return count
 }
 
 func makeRange(min, max int) []int {
-  arr := make([]int, max-min+1)
-  for i := range arr {
-    arr[i] = min + i
-  }
-  return arr
+	arr := make([]int, max-min+1)
+	for i := range arr {
+		arr[i] = min + i
+	}
+	return arr
 }

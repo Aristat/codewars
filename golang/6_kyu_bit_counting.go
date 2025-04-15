@@ -5,7 +5,7 @@ You can guarantee that input is non-negative.
 
 Example: The binary representation of 1234 is 10011010010, so the function should return 5 in this case
 
- */
+*/
 
 package kata
 

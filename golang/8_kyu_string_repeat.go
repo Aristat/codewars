@@ -5,7 +5,7 @@ Write a function called repeat_str which repeats the given string src exactly co
 repeatStr(6, "I") // "IIIIII"
 repeatStr(5, "Hello") // "HelloHelloHelloHelloHello"
 
- */
+*/
 
 package kata
 

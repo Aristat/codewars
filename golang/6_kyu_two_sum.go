@@ -11,13 +11,13 @@ The input will always be valid (numbers will be an array of length 2 or greater,
 package kata
 
 func TwoSum(numbers []int, target int) [2]int {
-  	for i, ielement := range numbers {
-      for j, jelement := range numbers {
-        if i != j && (ielement + jelement) == target {
-          return [2]int{i, j}
-        }
-      }
-	  }
-    
-    return [2]int{}
+	for i, ielement := range numbers {
+		for j, jelement := range numbers {
+			if i != j && (ielement+jelement) == target {
+				return [2]int{i, j}
+			}
+		}
+	}
+
+	return [2]int{}
 }

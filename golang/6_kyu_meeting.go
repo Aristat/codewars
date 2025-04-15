@@ -19,8 +19,8 @@ It can happen that in two distinct families with the same family name two people
 package kata
 
 import (
-  "strings"
-  "sort"
+	"sort"
+	"strings"
 )
 
 func Meeting(s string) string {
@@ -45,12 +45,12 @@ func Meeting(s string) string {
 		}
 		return dict[i][1] < dict[j][1]
 	})
-	
+
 	result := ""
-	
+
 	for _, v := range dict {
 		result = result + "(" + v[0] + ", " + v[1] + ")"
 	}
-  
-  return result
+
+	return result
 }

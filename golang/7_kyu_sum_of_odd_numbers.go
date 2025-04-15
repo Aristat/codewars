@@ -18,18 +18,18 @@ rowSumOddNumbers(2); // 3 + 5 = 8
 package kata
 
 import (
-  "math"
+	"math"
 )
 
 func RowSumOddNumbers(n int) int {
-  start := int(math.Pow(float64(n), 2)) - (n - 1)
-  finish := start + n*2 - 2
-  sum := start
+	start := int(math.Pow(float64(n), 2)) - (n - 1)
+	finish := start + n*2 - 2
+	sum := start
 
-  for start < finish {
-    start += 2
-    sum += start
-  }
+	for start < finish {
+		start += 2
+		sum += start
+	}
 
-  return sum
+	return sum
 }

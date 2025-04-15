@@ -13,7 +13,7 @@ Examples:
 unluckyDays(2015) == 3
 unluckyDays(1986) == 1
 
- */
+*/
 
 package kata
 

@@ -25,22 +25,22 @@ Examples:
 
 package kata
 
-func IntervalInsert(r [][2]int,z [2]int) (res [][2]int) {
-  for index, interval := range r {
-    if interval[1] < z[0] {
-      res = append(res, interval)
-    } else if interval[0] > z[1] {
-      res = append(res, z)
-      res = append(res, r[index:]...)
-      return res
-    } else {
-      if interval[0] < z[0] {
-        z[0] = interval[0]
-      }
-      if interval[1] > z[1] {
-        z[1] = interval[1]
-      }
-    }
-  }
-  return append(res, z)
+func IntervalInsert(r [][2]int, z [2]int) (res [][2]int) {
+	for index, interval := range r {
+		if interval[1] < z[0] {
+			res = append(res, interval)
+		} else if interval[0] > z[1] {
+			res = append(res, z)
+			res = append(res, r[index:]...)
+			return res
+		} else {
+			if interval[0] < z[0] {
+				z[0] = interval[0]
+			}
+			if interval[1] > z[1] {
+				z[1] = interval[1]
+			}
+		}
+	}
+	return append(res, z)
 }

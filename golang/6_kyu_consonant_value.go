@@ -37,7 +37,7 @@ func solve(str string) int {
 }
 
 func toPosition(i rune) int {
-  return int(rune(i - 'a' + 1))
+	return int(rune(i - 'a' + 1))
 }
 
 func contains(s []rune, e rune) bool {

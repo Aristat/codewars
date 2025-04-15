@@ -18,7 +18,7 @@ This is a little fun kata, to show you, how weak PINs are and how important a br
 
 If you liked this kata, here is an extension with short passwords: https://www.codewars.com/kata/59146f7b4670ba520900000a
 
- */
+*/
 
 package kata
 

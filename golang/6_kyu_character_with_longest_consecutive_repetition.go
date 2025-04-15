@@ -31,7 +31,7 @@ func LongestRepetition(text string) Result {
 	return result
 }
 
-func updateResult(current *Result, result*Result) {
+func updateResult(current *Result, result *Result) {
 	if current.L > result.L {
 		result.C = current.C
 		result.L = current.L

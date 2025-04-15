@@ -12,21 +12,21 @@ Solution("abcdef") //should return ["ab", "cd", "ef"]
 package kata
 
 func Solution(str string) []string {
-  result := []string{}
-  characters := ""
+	result := []string{}
+	characters := ""
 
-  for i, r := range str {
-    characters = characters + string(r)
-    if (i+1)%2 == 0 {
-      result = append(result, characters)
-      characters = ""
-    }
-  }
+	for i, r := range str {
+		characters = characters + string(r)
+		if (i+1)%2 == 0 {
+			result = append(result, characters)
+			characters = ""
+		}
+	}
 
-  if characters != "" {
-    characters += "_"
-    result = append(result, characters)
-  }
-  
-  return result
+	if characters != "" {
+		characters += "_"
+		result = append(result, characters)
+	}
+
+	return result
 }

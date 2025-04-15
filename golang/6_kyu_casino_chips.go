@@ -15,7 +15,7 @@ solve([4,1,1]) = 2
 
 */
 
-package kata 
+package kata
 
 import "sort"
 
@@ -49,6 +49,6 @@ func Solve(arr []int) int {
 		sum = first + second + third
 		count += 1
 	}
-  
-  return count
+
+	return count
 }

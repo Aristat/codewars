@@ -13,12 +13,12 @@ The input will always be in lowercase and never be empty.
 package kata
 
 func WordsToMarks(s string) int {
-  startAsciiNum := 96
-  number := 0
+	startAsciiNum := 96
+	number := 0
 
-  for _, c := range s {
-    number += int(c) - startAsciiNum
-  }
-  
-  return number
+	for _, c := range s {
+		number += int(c) - startAsciiNum
+	}
+
+	return number
 }

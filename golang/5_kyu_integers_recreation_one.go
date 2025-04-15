@@ -21,34 +21,34 @@ In Fortran - as in any other language - the returned string is not permitted to 
 package kata
 
 import (
-  "math"
+	"math"
 )
 
-func ListSquared(m, n int)  [][]int {
-  matches := [][]int{}
+func ListSquared(m, n int) [][]int {
+	matches := [][]int{}
 
-  for i := m; i <= n; i++ {
-    divisors := []int{}
+	for i := m; i <= n; i++ {
+		divisors := []int{}
 
-    for j := 1; j <= i/2; j++ {
-      if i%j != 0 {
-        continue
-      }
+		for j := 1; j <= i/2; j++ {
+			if i%j != 0 {
+				continue
+			}
 
-      divisors = append(divisors, j)
-    }
+			divisors = append(divisors, j)
+		}
 
-    divisors = append(divisors, i)
+		divisors = append(divisors, i)
 
-    sum := 0
-    for _, value := range divisors {
-      sum += value * value
-    }
+		sum := 0
+		for _, value := range divisors {
+			sum += value * value
+		}
 
-    if math.Trunc(math.Sqrt(float64(sum))) == math.Sqrt(float64(sum)) {
-      matches = append(matches, []int{i, sum})
-    }
-  }
+		if math.Trunc(math.Sqrt(float64(sum))) == math.Sqrt(float64(sum)) {
+			matches = append(matches, []int{i, sum})
+		}
+	}
 
-  return matches
+	return matches
 }

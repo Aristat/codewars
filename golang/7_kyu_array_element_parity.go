@@ -16,7 +16,7 @@ Examples:
 
 (the only-positive or only-negative integer may appear more than once)
 
- */
+*/
 
 package kata
 

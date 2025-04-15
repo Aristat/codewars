@@ -17,10 +17,10 @@ For the sake of simplicity, all function inputs to createIterator would be funct
 package kata
 
 func CreateIterator(fn func(int) int, n int) func(int) int {
-  return func(input int) int {
-    for i := 0; i < n; i++ {
-      input = fn(input)
-    }
-    return input
-  }
+	return func(input int) int {
+		for i := 0; i < n; i++ {
+			input = fn(input)
+		}
+		return input
+	}
 }

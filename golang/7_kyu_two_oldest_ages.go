@@ -13,11 +13,11 @@ TwoOldestAges([]int{1, 5, 87, 45, 8, 8}) // should return [2]int{45, 87}
 package kata
 
 import (
-  "sort"
+	"sort"
 )
 
 func TwoOldestAges(ages []int) [2]int {
-  sort.Ints(ages)
-  ageslen := len(ages)
-  return [2]int{ages[ageslen-2], ages[ageslen-1]}
+	sort.Ints(ages)
+	ageslen := len(ages)
+	return [2]int{ages[ageslen-2], ages[ageslen-1]}
 }

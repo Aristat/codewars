@@ -29,7 +29,7 @@ func NameValue(my_list []string) []int {
 			count += int(r - 96)
 		}
 
-		result = append(result, count * (i + 1))
+		result = append(result, count*(i+1))
 	}
 
 	return result

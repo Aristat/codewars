@@ -18,14 +18,14 @@ So the maximum value that you can obtain is 9.
 package kata
 
 func ExpressionMatter(a int, b int, c int) int {
-    expressions := []int{(a + b) * c, a * (b + c), a + b + c, a * b * c}
-    max_value := 0
-  
-    for i, e := range expressions {
-      if i == 0 || e > max_value {
-        max_value = e
-      }
-    }
-    
-    return max_value
+	expressions := []int{(a + b) * c, a * (b + c), a + b + c, a * b * c}
+	max_value := 0
+
+	for i, e := range expressions {
+		if i == 0 || e > max_value {
+			max_value = e
+		}
+	}
+
+	return max_value
 }
