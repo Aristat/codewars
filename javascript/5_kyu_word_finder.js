@@ -16,36 +16,36 @@
 */
 
 function Dictionary(words) {
-  this.words = words;
+    this.words = words;
 }
 
-Dictionary.prototype.getMatchingWords = function(pattern) {
-  result = []
-  patternLength = pattern.length
-  
-  this.words.forEach(function (word) {
-    if (word.length != patternLength) {
-      return
-    }
-  
-    correct = true
-    
-    for (var i = 0; i < patternLength; i++) {
-      char = pattern.charAt(i)
-      if (char == '?') continue
-  
-  
-      if (word[i] != char) {
-        correct = false
-        break
-      }
-    }
-  
-    if (correct) {
-      result.push(word)
-    }
+Dictionary.prototype.getMatchingWords = function (pattern) {
+    result = []
+    patternLength = pattern.length
 
-  });
-  
-  return result
+    this.words.forEach(function (word) {
+        if (word.length != patternLength) {
+            return
+        }
+
+        correct = true
+
+        for (var i = 0; i < patternLength; i++) {
+            char = pattern.charAt(i)
+            if (char == '?') continue
+
+
+            if (word[i] != char) {
+                correct = false
+                break
+            }
+        }
+
+        if (correct) {
+            result.push(word)
+        }
+
+    });
+
+    return result
 }

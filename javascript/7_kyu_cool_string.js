@@ -6,31 +6,31 @@ Given a string, check if it is cool.
 */
 
 function coolString(s) {
-  let chars = [...s].map(char => char.charCodeAt(0))
-  let lChars = chars.length
-  let cool = true
+    let chars = [...s].map(char => char.charCodeAt(0))
+    let lChars = chars.length
+    let cool = true
 
-  for (let i = 0; i < lChars; i++) {
-    if (i === lChars - 1 && (isUppercase(chars[i]) || isLowercase(chars[i])))
-      break;
+    for (let i = 0; i < lChars; i++) {
+        if (i === lChars - 1 && (isUppercase(chars[i]) || isLowercase(chars[i])))
+            break;
 
-    if (isUppercase(chars[i]) && !isUppercase(chars[i + 1]))
-      continue;
+        if (isUppercase(chars[i]) && !isUppercase(chars[i + 1]))
+            continue;
 
-    if (isLowercase(chars[i]) && !isLowercase(chars[i + 1]))
-      continue;
+        if (isLowercase(chars[i]) && !isLowercase(chars[i + 1]))
+            continue;
 
-    cool = false
-    break;
-  }
+        cool = false
+        break;
+    }
 
-  return cool
+    return cool
 }
 
 function isUppercase(c) {
-  return c >= 65 && c <= 90
+    return c >= 65 && c <= 90
 }
 
 function isLowercase(c) {
-  return c >= 97 && c <= 122
+    return c >= 97 && c <= 122
 }

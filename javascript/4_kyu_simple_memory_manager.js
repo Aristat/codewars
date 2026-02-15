@@ -20,128 +20,128 @@ This method is the counterpart to write. Only indices within allocated blocks ma
 */
 
 class MemoryManager {
-  /**
-   * @constructor Creates a new memory manager for the provided array.
-   * @param {array} memory An array to use as the backing memory.
-   */
-  constructor(memory) {
-    this.memory = memory;
-    this.freeBlocks = [{ start: 0, size: memory.length }];
-    this.allocatedBlocks = new Map();
-  }
-
-  /**
-   * Allocates a block of memory of requested size.
-   * @param {number} size - The size of the block to allocate.
-   * @returns {number} A pointer which is the index of the first location in the allocated block.
-   * @throws If it is not possible to allocate a block of the requested size.
-   */
-  allocate(size) {
-    if (size <= 0) {
-      throw new Error('Size must be positive');
+    /**
+     * @constructor Creates a new memory manager for the provided array.
+     * @param {array} memory An array to use as the backing memory.
+     */
+    constructor(memory) {
+        this.memory = memory;
+        this.freeBlocks = [{start: 0, size: memory.length}];
+        this.allocatedBlocks = new Map();
     }
 
-    for (let i = 0; i < this.freeBlocks.length; i++) {
-      const freeBlock = this.freeBlocks[i];
-
-      if (freeBlock.size >= size) {
-        const pointer = freeBlock.start;
-        this.allocatedBlocks.set(pointer, {start: pointer, size: size});
-
-        if (freeBlock.size === size) {
-          this.freeBlocks.splice(i, 1);
-        } else {
-          freeBlock.start += size;
-          freeBlock.size -= size;
+    /**
+     * Allocates a block of memory of requested size.
+     * @param {number} size - The size of the block to allocate.
+     * @returns {number} A pointer which is the index of the first location in the allocated block.
+     * @throws If it is not possible to allocate a block of the requested size.
+     */
+    allocate(size) {
+        if (size <= 0) {
+            throw new Error('Size must be positive');
         }
 
-        return pointer;
-      }
+        for (let i = 0; i < this.freeBlocks.length; i++) {
+            const freeBlock = this.freeBlocks[i];
+
+            if (freeBlock.size >= size) {
+                const pointer = freeBlock.start;
+                this.allocatedBlocks.set(pointer, {start: pointer, size: size});
+
+                if (freeBlock.size === size) {
+                    this.freeBlocks.splice(i, 1);
+                } else {
+                    freeBlock.start += size;
+                    freeBlock.size -= size;
+                }
+
+                return pointer;
+            }
+        }
+
+        throw new Error('Not enough memory to allocate block of size ' + size);
     }
 
-    throw new Error('Not enough memory to allocate block of size ' + size);
-  }
+    /**
+     * Releases a previously allocated block of memory.
+     * @param {number} pointer - The pointer to the block to release.
+     * @throws If the pointer does not point to an allocated block.
+     */
+    release(pointer) {
+        const allocatedBlock = this.allocatedBlocks.get(pointer);
 
-  /**
-   * Releases a previously allocated block of memory.
-   * @param {number} pointer - The pointer to the block to release.
-   * @throws If the pointer does not point to an allocated block.
-   */
-  release(pointer) {
-    const allocatedBlock = this.allocatedBlocks.get(pointer);
+        if (!allocatedBlock) {
+            throw new Error('Pointer does not point to an allocated block');
+        }
 
-    if (!allocatedBlock) {
-      throw new Error('Pointer does not point to an allocated block');
+        this.allocatedBlocks.delete(pointer);
+        const newFreeBlock = {start: pointer, size: allocatedBlock.size};
+
+        let inserted = false;
+        for (let i = 0; i < this.freeBlocks.length; i++) {
+            if (newFreeBlock.start < this.freeBlocks[i].start) {
+                this.freeBlocks.splice(i, 0, newFreeBlock);
+                inserted = true;
+                break;
+            }
+        }
+
+        if (!inserted) {
+            this.freeBlocks.push(newFreeBlock);
+        }
+
+        // Merge free blocks
+        for (let i = 0; i < this.freeBlocks.length - 1; i++) {
+            const current = this.freeBlocks[i];
+            const next = this.freeBlocks[i + 1];
+
+            if (current.start + current.size === next.start) {
+                current.size += next.size;
+                this.freeBlocks.splice(i + 1, 1);
+                i--;
+            }
+        }
     }
 
-    this.allocatedBlocks.delete(pointer);
-    const newFreeBlock = { start: pointer, size: allocatedBlock.size };
+    /**
+     * Reads the value at the location identified by pointer
+     * @param {number} pointer - The location to read.
+     * @returns {number} The value at that location.
+     * @throws If pointer is in unallocated memory.
+     */
+    read(pointer) {
+        if (!this.isAllocated(pointer)) {
+            throw new Error('Pointer is in unallocated memory');
+        }
 
-    let inserted = false;
-    for (let i = 0; i < this.freeBlocks.length; i++) {
-      if (newFreeBlock.start < this.freeBlocks[i].start) {
-        this.freeBlocks.splice(i, 0, newFreeBlock);
-        inserted = true;
-        break;
-      }
+        return this.memory[pointer];
     }
 
-    if (!inserted) {
-      this.freeBlocks.push(newFreeBlock);
+    /**
+     * Writes a value to the location identified by pointer
+     * @param {number} pointer - The location to write to.
+     * @param {number} value - The value to write.
+     * @throws If pointer is in unallocated memory.
+     */
+    write(pointer, value) {
+        if (!this.isAllocated(pointer)) {
+            throw new Error('Pointer is in unallocated memory');
+        }
+
+        this.memory[pointer] = value;
     }
 
-    // Merge free blocks
-    for (let i = 0; i < this.freeBlocks.length - 1; i++) {
-      const current = this.freeBlocks[i];
-      const next = this.freeBlocks[i + 1];
-
-      if (current.start + current.size === next.start) {
-        current.size += next.size;
-        this.freeBlocks.splice(i + 1, 1);
-        i--;
-      }
+    /**
+     * Checks if a pointer is within an allocated block
+     * @param {number} pointer - The pointer to check
+     * @returns {boolean} True if the pointer is in allocated memory
+     */
+    isAllocated(pointer) {
+        for (const [_, block] of this.allocatedBlocks) {
+            if (pointer >= block.start && pointer < block.start + block.size) {
+                return true;
+            }
+        }
+        return false;
     }
-  }
-
-  /**
-   * Reads the value at the location identified by pointer
-   * @param {number} pointer - The location to read.
-   * @returns {number} The value at that location.
-   * @throws If pointer is in unallocated memory.
-   */
-  read(pointer) {
-    if (!this.isAllocated(pointer)) {
-      throw new Error('Pointer is in unallocated memory');
-    }
-
-    return this.memory[pointer];
-  }
-
-  /**
-   * Writes a value to the location identified by pointer
-   * @param {number} pointer - The location to write to.
-   * @param {number} value - The value to write.
-   * @throws If pointer is in unallocated memory.
-   */
-  write(pointer, value) {
-    if (!this.isAllocated(pointer)) {
-      throw new Error('Pointer is in unallocated memory');
-    }
-
-    this.memory[pointer] = value;
-  }
-
-  /**
-   * Checks if a pointer is within an allocated block
-   * @param {number} pointer - The pointer to check
-   * @returns {boolean} True if the pointer is in allocated memory
-   */
-  isAllocated(pointer) {
-    for (const [_, block] of this.allocatedBlocks) {
-      if (pointer >= block.start && pointer < block.start + block.size) {
-        return true;
-      }
-    }
-    return false;
-  }
 }

@@ -12,33 +12,33 @@ The input will always be an integer.
 
 */
 
-function minPermutation(n) {  
-  const digits = Math.abs(n).toString().split('');
-  if (digits.length == 1) {
-    return n;
-  }
-  
-  const isNegative = n < 0;
-  const results = new Set();
-
-  function permute(arr, l = 0) {
-    if (l === arr.length) {
-      const str = arr.join('');
-      if (str[0] !== '0') {
-        results.add(parseInt(str));
-      }
-      return;
+function minPermutation(n) {
+    const digits = Math.abs(n).toString().split('');
+    if (digits.length == 1) {
+        return n;
     }
 
-    for (let i = l; i < arr.length; i++) {
-      [arr[l], arr[i]] = [arr[i], arr[l]];
-      permute(arr, l + 1);
-      [arr[l], arr[i]] = [arr[i], arr[l]];
+    const isNegative = n < 0;
+    const results = new Set();
+
+    function permute(arr, l = 0) {
+        if (l === arr.length) {
+            const str = arr.join('');
+            if (str[0] !== '0') {
+                results.add(parseInt(str));
+            }
+            return;
+        }
+
+        for (let i = l; i < arr.length; i++) {
+            [arr[l], arr[i]] = [arr[i], arr[l]];
+            permute(arr, l + 1);
+            [arr[l], arr[i]] = [arr[i], arr[l]];
+        }
     }
-  }
 
-  permute(digits);
+    permute(digits);
 
-  const min = Math.min(...results);
-  return isNegative ? -min : min;
+    const min = Math.min(...results);
+    return isNegative ? -min : min;
 }

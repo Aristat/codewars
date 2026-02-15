@@ -13,7 +13,7 @@ smaller([1, 2, 0]) === [1, 1, 0]
 */
 
 function smaller(nums) {
-  return nums.map((number, index) => { 
-    return nums.slice(index).reduce((total, numberToCompare) => (numberToCompare < number ? total + 1 : total), 0)
-  })
+    return nums.map((number, index) => {
+        return nums.slice(index).reduce((total, numberToCompare) => (numberToCompare < number ? total + 1 : total), 0)
+    })
 }

@@ -30,16 +30,16 @@ Please ask before translating: some translations are already written and publish
 */
 
 function partsSums(ls) {
-  result = []
-  sequence = [...Array(ls.length).keys()]
-  sum = ls.reduce((a, b) => a + b, 0)
-  
-  result.push(sum)
-  
-  sequence.forEach(function (i) {
-    sum -= ls[i]
+    result = []
+    sequence = [...Array(ls.length).keys()]
+    sum = ls.reduce((a, b) => a + b, 0)
+
     result.push(sum)
-  })
-  
-  return result
+
+    sequence.forEach(function (i) {
+        sum -= ls[i]
+        result.push(sum)
+    })
+
+    return result
 }
