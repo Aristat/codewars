@@ -21,24 +21,12 @@ func Solve(arr []int) []int {
 		hashMap[v]++
 	}
 
-	keys := make([]int, 0, len(hashMap))
-	for k := range hashMap {
-		keys = append(keys, k)
-	}
-
-	sort.Slice(keys, func(i, j int) bool {
-		if hashMap[keys[i]] == hashMap[keys[j]] {
-			return keys[i] < keys[j]
+	sort.Slice(arr, func(i, j int) bool {
+		if hashMap[arr[i]] == hashMap[arr[j]] {
+			return arr[i] < arr[j]
 		}
-		return hashMap[keys[i]] > hashMap[keys[j]]
+		return hashMap[arr[i]] > hashMap[arr[j]]
 	})
 
-	result := make([]int, 0, len(keys))
-	for _, v := range keys {
-		for i := 0; i < hashMap[v]; i++ {
-			result = append(result, v)
-		}
-	}
-
-	return result
+	return arr
 }
