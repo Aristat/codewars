@@ -1,3 +1,5 @@
+export {}
+
 function removeDuplicates(nums: number[]): number {
     let previousNum = nums[0]
     let uniqArray = []

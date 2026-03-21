@@ -1,3 +1,5 @@
+export {}
+
 function twoSum(nums: number[], target: number): number[] {
     const mapIndexes: Map<number, number> = new Map();
     for (let i = 0; i < nums.length; i++) {
